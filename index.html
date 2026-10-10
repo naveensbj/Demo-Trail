@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0→Shipped Resume Parser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#">0<span class="logo-arrow">→</span>Shipped</a>
+      <span class="nav-tag">Resume Parser</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Upload · Parse · Score</p>
+      <h1>Ship a resume that gets <span class="accent">parsed</span>, not skipped.</h1>
+      <p class="hero-sub">
+        Drop in a PDF and get an instant score, the skills a parser can actually find,
+        and the ones it can't. Runs entirely in your browser — no server, no uploads.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ UPLOAD ============ -->
+  <main class="container">
+    <section id="uploadCard" class="upload-card" tabindex="0" aria-label="Upload a resume PDF">
+      <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+      <div class="upload-icon">📄</div>
+      <h2>Drop your resume here</h2>
+      <p>or <span class="browse">browse files</span> — PDF only, up to ~10 MB</p>
+      <p id="uploadError" class="upload-error" hidden></p>
+    </section>
+
+    <p id="parsingNote" class="parsing-note" hidden>Reading your PDF…</p>
+
+    <!-- ============ RESULTS ============ -->
+    <section id="results" class="results" hidden>
+      <div class="score-panel">
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="score-num">
+            <span id="scoreValue">0</span><small>/100</small>
+          </div>
+        </div>
+
+        <div class="score-side">
+          <h2 id="verdict">Your score</h2>
+          <p id="verdictText"></p>
+          <ul class="breakdown">
+            <li><span>Skills matched</span><b id="bSkills">–</b></li>
+            <li><span>Key sections found</span><b id="bSections">–</b></li>
+            <li><span>Contact info found</span><b id="bContact">–</b></li>
+          </ul>
+          <button id="resetBtn" class="btn-ghost">Parse another resume</button>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-col present">
+          <h3>Skills present <span id="presentCount" class="count"></span></h3>
+          <div id="presentSkills" class="chips"></div>
+        </div>
+        <div class="skill-col missing">
+          <h3>Skills missing <span id="missingCount" class="count"></span></h3>
+          <div id="missingSkills" class="chips"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="steps">
+      <div class="step"><span>1</span><h3>Upload</h3><p>Your PDF never leaves the browser — text is extracted locally.</p></div>
+      <div class="step"><span>2</span><h3>Parse</h3><p>Skills, sections and contact details are matched against a tracking list.</p></div>
+      <div class="step"><span>3</span><h3>Score</h3><p>A weighted score shows what a parser sees — and what's missing.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>0→Shipped Resume Parser · a mock built with plain HTML, CSS &amp; JS</p>
+    </div>
+  </footer>
+
+  <!-- pdf.js from CDN: extracts PDF text client-side -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
